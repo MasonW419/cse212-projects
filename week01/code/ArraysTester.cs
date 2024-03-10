@@ -39,7 +39,16 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        // First, make an array that is the right size needed
+        // Then loop over each slot with an incremental multiple of the input number
+        var arr = new double[length];
+        double nub = 0;
+        for (int i = 0; i < length; i++)
+        {
+            nub = (i+1) * number;
+            arr[i] = nub;
+        }
+        return arr; // replace this return statement with your own
     }
     
     /// <summary>
@@ -50,12 +59,58 @@ public static class ArraysTester {
     /// <br /><br />
     /// Because a list is dynamic, this function will modify the existing <c>data</c> list rather than returning a new list.
     /// </summary>
-    private static void RotateListRight(List<int> data, int amount)
+    private static List<int> RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // First, write code to shift last number to the front and overwrite the others with the previous number 
+        // Second, loop over how many times needed 
+        // Note: if lists are long, then I would've stored all the numbers needed to be shifted so that the 
+        //         code only loops over twice. 
+        List<int> newData = data;
+        int previous = 0;
+        int current = 0;
+        for(int i = 0; i < amount; i++)
+        {
+            for(int j = 0; j < newData.Count(); j++)
+            {
+                if (j == 0)
+                {
+                   previous = newData.Last(); // 9
+                }
+                else
+                {
+                    previous = current; // 2
+                }
+                current = newData[j]; // 2
+                newData[j] = previous; // 9, 1
+            } 
+        }
+        return newData;
     }
+    // public static List<int> RotateIteration(List<int> data)
+    // {
+    //     List<int> newData = data;
+    //     int previous = 0;
+    //     int current = 0;
+    //         for(int j = 0; j < newData.Count(); j++)
+    //         {
+    //             if (j == 0)
+    //             {
+    //                previous = newData.Last(); // 9
+    //             }
+    //             else
+    //             {
+    //                 previous = current; // 2
+    //             }
+    //             current = newData[j]; // 2
+    //             newData[j] = previous; // 9, 1
+    //         } 
+        
+    //     return newData;
+
+    // }
 }

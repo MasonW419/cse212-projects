@@ -24,7 +24,7 @@
             "program": "${workspaceFolder}/week01/analyze/bin/Debug/net8.0/analyze.dll",
             "args": [],
             "cwd": "${workspaceFolder}/week01/analyze",
-            "console": "integratedTerminal",
+            "console": "externalTerminal",
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
