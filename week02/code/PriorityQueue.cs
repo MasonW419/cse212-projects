@@ -10,25 +10,30 @@
     /// <param name="priority">The priority</param>
     public void Enqueue(string value, int priority) {
         var newNode = new PriorityItem(value, priority);
+        Console.WriteLine($"newNode = {newNode.Value} {newNode.Priority}");
         _queue.Add(newNode);
+        // Console.WriteLine(_queue);
     }
 
     public String Dequeue() {
         if (_queue.Count == 0) // Verify the queue is not empty
         {
-            Console.WriteLine("The queue is empty.");
+            Console.WriteLine($"The queue is empty.");
             return null;
         }
 
         // Find the index of the item with the highest priority to remove
         var highPriorityIndex = 0;
-        for (int index = 1; index < _queue.Count - 1; index++) {
-            if (_queue[index].Priority >= _queue[highPriorityIndex].Priority)
+        for (int index = 0; index < _queue.Count; index++) {
+            if (_queue[index].Priority > _queue[highPriorityIndex].Priority)
                 highPriorityIndex = index;
         }
 
         // Remove and return the item with the highest priority
         var value = _queue[highPriorityIndex].Value;
+
+        Console.WriteLine($"Removed and returned {_queue[highPriorityIndex]}:{value}");
+        _queue.RemoveAt(highPriorityIndex);
         return value;
     }
 

@@ -20,8 +20,13 @@
         testQueue1.Enqueue("two", 2);
         testQueue1.Enqueue("one", 1);
 
+        Console.WriteLine("");
+        for(int i = 0; i < 10; i++) {
+            testQueue1.Dequeue();
+        }
 
-        // Defect(s) Found: 
+
+        // Defect(s) Found:  Skipped the first value to Dequeue
 
         Console.WriteLine("---------");
 
@@ -30,30 +35,66 @@
         // Expected Result: 
         Console.WriteLine("Test 2");
 
-        // Defect(s) Found: 
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
+        // Defect(s) Found: None
+        var testQueue2 = new PriorityQueue();
+        testQueue2.Enqueue("three", 3);
+        testQueue2.Enqueue("two", 2);
+        testQueue2.Enqueue("one", 1);
+        testQueue2.Enqueue("five", 5);
+        testQueue2.Enqueue("four", 4);
+        for(int i = 0; i < 10; i++) {
+            testQueue2.Dequeue();
+        }
         
         Console.WriteLine("---------");
 
         // Add more Test Cases As Needed Below
+        // Test 2 and a half
+        // Scenario: 
+        // Expected Result: 
+        Console.WriteLine("Test 2 (Double Check)");
+
+        // Defect(s) Found: Almost got me, skipped the last number in the queue
+        var testQueue2h = new PriorityQueue();
+        testQueue2h.Enqueue("one", 1);
+        testQueue2h.Enqueue("two", 2);
+        testQueue2h.Enqueue("three", 3);
+        testQueue2h.Enqueue("four", 4);
+        testQueue2h.Enqueue("five", 5);
+        for(int i = 0; i < 10; i++) {
+            testQueue2h.Dequeue();
+        }
 
 
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
+        // Test 3
+        // Scenario: Test for duplicate, the duplicates in front should go out first
+        // Expected Result: 
+        Console.WriteLine("Test 3");
+
+        // Defect(s) Found: None
+        var tQ3 = new PriorityQueue();
+        tQ3.Enqueue("first", 5);
+        tQ3.Enqueue("third", 4);
+        tQ3.Enqueue("fourth", 3);
+        tQ3.Enqueue("fifth", 2);
+        tQ3.Enqueue("second", 5);
+        for(int i = 0; i < 10; i++) {
+            tQ3.Dequeue();
+        }
+
+
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
 
 
 
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
-        testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
+        // testQueue1.Enqueue();
     }
 }
