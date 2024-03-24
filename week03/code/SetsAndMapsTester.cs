@@ -52,28 +52,28 @@ public static class SetsAndMapsTester {
 
         // Problem 4: Maze
         Console.WriteLine("\n=========== Maze TESTS ===========");
-        Dictionary<ValueTuple<int, int>, bool[]> map = SetupMazeMap();
-        var maze = new Maze(map);
-        maze.ShowStatus(); // Should be at (1,1)
-        maze.MoveUp(); // Error
-        maze.MoveLeft(); // Error
-        maze.MoveRight();
-        maze.MoveRight(); // Error
-        maze.MoveDown();
-        maze.MoveDown();
-        maze.MoveDown();
-        maze.MoveRight();
-        maze.MoveRight();
-        maze.MoveUp();
-        maze.MoveRight();
-        maze.MoveDown();
-        maze.MoveLeft();
-        maze.MoveDown(); // Error
-        maze.MoveRight();
-        maze.MoveDown();
-        maze.MoveDown();
-        maze.MoveRight();
-        maze.ShowStatus(); // Should be at (6,6)
+        // Dictionary<ValueTuple<int, int>, bool[]> map = SetupMazeMap();
+        // var maze = new Maze(map);
+        // maze.ShowStatus(); // Should be at (1,1)
+        // maze.MoveUp(); // Error
+        // maze.MoveLeft(); // Error
+        // maze.MoveRight();
+        // maze.MoveRight(); // Error
+        // maze.MoveDown();
+        // maze.MoveDown();
+        // maze.MoveDown();
+        // maze.MoveRight();
+        // maze.MoveRight();
+        // maze.MoveUp();
+        // maze.MoveRight();
+        // maze.MoveDown();
+        // maze.MoveLeft();
+        // maze.MoveDown(); // Error
+        // maze.MoveRight();
+        // maze.MoveDown();
+        // maze.MoveDown();
+        // maze.MoveRight();
+        // maze.ShowStatus(); // Should be at (6,6)
 
         // Problem 5: Earthquake
         // Sample Test Cases (may not be comprehensive) 
@@ -107,11 +107,31 @@ public static class SetsAndMapsTester {
     /// that there were no duplicates) and therefore should not be displayed.
     /// </summary>
     /// <param name="words">An array of 2-character words (lowercase, no duplicates)</param>
-    private static void DisplayPairs(string[] words) {
+    /// private
+    static void DisplayPairs(string[] words) {
         // To display the pair correctly use something like:
         // Console.WriteLine($"{word} & {pair}");
         // Each pair of words should displayed on its own line.
+
+        // First, loop through words, and keep track of know values
+        // during loop, check if current is a pair with previous values
+        // Write a function that reverses the string
+        // var trackPairs = new HashSet<string>();
+        // foreach (var w in words) {
+        //     if (trackPairs.Size() == 0) {
+                
+        //     }
+        //     else {
+
+        //     }
     }
+    // public static string ReverseWord(string word) {
+    //     var charArray = string.toCharArray(word);
+    //     string newWord = Array.Reverse(charArray);
+    //     return newWord;
+    // }
+
+
 
     /// <summary>
     /// Read a census file and summarize the degrees (education)
@@ -127,13 +147,20 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 2 #
     /// #############
-    private static Dictionary<string, int> SummarizeDegrees(string filename) {
+    
+    static Dictionary<string, int> SummarizeDegrees(string filename) {
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
+            if (degrees.ContainsKey(line[3])) {
+                degrees[line[3]] += 1;
+            }
+            else {
+                degrees[line[3]] = 1;
+            }
+            Console.WriteLine(degrees[line[3]]);
         }
-
         return degrees;
     }
 
@@ -156,15 +183,43 @@ public static class SetsAndMapsTester {
     /// #############
     /// # Problem 3 #
     /// #############
-    private static bool IsAnagram(string word1, string word2) {
+    /// private
+    static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        var letterMap = new Dictionary<char, int>();
+        bool yesAnagram = true;
+        for(int i = 0; i < word1.Length; i++) {
+            alterLetterMap(letterMap, word1[i], 1);
+            Console.WriteLine($"letter {word1[i]}, letterMap {letterMap[word1[i]]}");
+        }
+        for(int i = 0; i <word2.Length; i++) {
+            alterLetterMap(letterMap, word2[i], -1);
+             Console.WriteLine($"letter {word2[i]}, letterMap {letterMap[word2[i]]}");
+        }
+        for(int i = 0; i < letterMap.Count(); i++) {
+            var item = letterMap.ElementAt(i);
+            if(item.Value != 0) {
+                Console.WriteLine($"key: {item.Key}");
+                Console.WriteLine($"value: {item.Value}");
+                yesAnagram = false;
+            }
+        }
+        return yesAnagram;
+    }
+    static void alterLetterMap(Dictionary<char, int> dict, char letter, int modifier) {
+        if (dict.ContainsKey(letter)) {
+            dict[letter] = dict[letter] + modifier;
+        }
+        else {
+            dict[letter] = 0 + modifier;
+        }
     }
 
     /// <summary>
     /// Sets up the maze dictionary for problem 4
     /// </summary>
-    private static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap() {
+    /// private
+    static Dictionary<ValueTuple<int, int>, bool[]> SetupMazeMap() {
         Dictionary<ValueTuple<int, int>, bool[]> map = new() {
             { (1, 1), new[] { false, true, false, true } },
             { (1, 2), new[] { false, true, true, false } },
@@ -220,7 +275,8 @@ public static class SetsAndMapsTester {
     /// https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
     /// 
     /// </summary>
-    private static void EarthquakeDailySummary() {
+    /// private
+    static void EarthquakeDailySummary() {
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
         using var client = new HttpClient();
         using var getRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);

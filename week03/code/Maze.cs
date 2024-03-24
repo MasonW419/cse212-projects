@@ -28,8 +28,13 @@ public class Maze {
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, then display "Can't go that way!"
     /// </summary>
-    public void MoveLeft() {
+    public void MoveLeft(int currX, int currY) {
         // FILL IN CODE
+        // if (_mazeMap[currX, currY].Contains("Left"))
+        // {
+        //     currX = currX -1;
+        // }
+        // Console.WriteLine("Can't go that way!");
     }
 
     /// <summary>
