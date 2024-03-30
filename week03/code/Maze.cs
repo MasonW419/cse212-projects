@@ -28,13 +28,16 @@ public class Maze {
     /// Check to see if you can move left.  If you can, then move.  If you
     /// can't move, then display "Can't go that way!"
     /// </summary>
-    public void MoveLeft(int currX, int currY) {
+    public void MoveLeft() {
         // FILL IN CODE
-        // if (_mazeMap[currX, currY].Contains("Left"))
-        // {
-        //     currX = currX -1;
-        // }
-        // Console.WriteLine("Can't go that way!");
+        (int, int) t1 = (_currX, _currY);
+        if (_mazeMap[t1][0])
+        {
+            _currX = _currX - 1;
+        }
+        else {
+        Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -43,6 +46,14 @@ public class Maze {
     /// </summary>
     public void MoveRight() {
         // FILL IN CODE
+        (int, int) t1 = (_currX, _currY);
+        if (_mazeMap[t1][1])
+        {
+            _currX = _currX + 1;
+        }
+        else {
+        Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -51,6 +62,14 @@ public class Maze {
     /// </summary>
     public void MoveUp() {
         // FILL IN CODE
+        (int, int) t1 = (_currX, _currY);
+        if (_mazeMap[t1][0])
+        {
+            _currY = _currY + 1;
+        }
+        else {
+        Console.WriteLine("Can't go that way!");
+        }
     }
 
     /// <summary>
@@ -59,6 +78,14 @@ public class Maze {
     /// </summary>
     public void MoveDown() {
         // FILL IN CODE
+        (int, int) t1 = (_currX, _currY);
+        if (_mazeMap[t1][0])
+        {
+            _currY = _currY - 1;
+        }
+        else {
+        Console.WriteLine("Can't go that way!");
+        }
     }
 
     public void ShowStatus() {

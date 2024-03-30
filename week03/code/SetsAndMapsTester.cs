@@ -52,28 +52,28 @@ public static class SetsAndMapsTester {
 
         // Problem 4: Maze
         Console.WriteLine("\n=========== Maze TESTS ===========");
-        // Dictionary<ValueTuple<int, int>, bool[]> map = SetupMazeMap();
-        // var maze = new Maze(map);
-        // maze.ShowStatus(); // Should be at (1,1)
-        // maze.MoveUp(); // Error
-        // maze.MoveLeft(); // Error
-        // maze.MoveRight();
-        // maze.MoveRight(); // Error
-        // maze.MoveDown();
-        // maze.MoveDown();
-        // maze.MoveDown();
-        // maze.MoveRight();
-        // maze.MoveRight();
-        // maze.MoveUp();
-        // maze.MoveRight();
-        // maze.MoveDown();
-        // maze.MoveLeft();
-        // maze.MoveDown(); // Error
-        // maze.MoveRight();
-        // maze.MoveDown();
-        // maze.MoveDown();
-        // maze.MoveRight();
-        // maze.ShowStatus(); // Should be at (6,6)
+        Dictionary<ValueTuple<int, int>, bool[]> map = SetupMazeMap();
+        var maze = new Maze(map);
+        maze.ShowStatus(); // Should be at (1,1)
+        maze.MoveUp(); // Error
+        maze.MoveLeft(); // Error
+        maze.MoveRight();
+        maze.MoveRight(); // Error
+        maze.MoveDown();
+        maze.MoveDown();
+        maze.MoveDown();
+        maze.MoveRight();
+        maze.MoveRight();
+        maze.MoveUp();
+        maze.MoveRight();
+        maze.MoveDown();
+        maze.MoveLeft();
+        maze.MoveDown(); // Error
+        maze.MoveRight();
+        maze.MoveDown();
+        maze.MoveDown();
+        maze.MoveRight();
+        maze.ShowStatus(); // Should be at (6,6)
 
         // Problem 5: Earthquake
         // Sample Test Cases (may not be comprehensive) 
@@ -153,13 +153,12 @@ public static class SetsAndMapsTester {
         foreach (var line in File.ReadLines(filename)) {
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
-            if (degrees.ContainsKey(line[3])) {
-                degrees[line[3]] += 1;
+            if (degrees.ContainsKey(fields[3])) {
+                degrees[fields[3]] += 1;
             }
             else {
-                degrees[line[3]] = 1;
+                degrees[fields[3]] = 1;
             }
-            Console.WriteLine(degrees[line[3]]);
         }
         return degrees;
     }
@@ -186,27 +185,44 @@ public static class SetsAndMapsTester {
     /// private
     static bool IsAnagram(string word1, string word2) {
         // Todo Problem 3 - ADD YOUR CODE HERE
+        string lower1 = word1.ToLower();
+        string lower2 = word2.ToLower();
         var letterMap = new Dictionary<char, int>();
         bool yesAnagram = true;
         for(int i = 0; i < word1.Length; i++) {
-            alterLetterMap(letterMap, word1[i], 1);
-            Console.WriteLine($"letter {word1[i]}, letterMap {letterMap[word1[i]]}");
+            Console.WriteLine($"Char is: {lower1[i]} is Space: {char.IsWhiteSpace(lower1, i)}");
+            if (char.IsWhiteSpace(lower1, i)) {
+                Console.WriteLine("Space Encountered"!);
+            }
+            else {
+                AlterLetterMap(letterMap, lower1[i], 1);
+                Console.WriteLine($"Char is: {lower1[i]} is Space: {char.IsWhiteSpace(lower1, i)}");
+            }
         }
         for(int i = 0; i <word2.Length; i++) {
-            alterLetterMap(letterMap, word2[i], -1);
-             Console.WriteLine($"letter {word2[i]}, letterMap {letterMap[word2[i]]}");
+            if (lower2[i] == ' ') {
+                Console.WriteLine("Space Encountered"!);
+            }
+            else {
+                AlterLetterMap(letterMap, lower2[i], -1);
+            }
         }
         for(int i = 0; i < letterMap.Count(); i++) {
             var item = letterMap.ElementAt(i);
-            if(item.Value != 0) {
-                Console.WriteLine($"key: {item.Key}");
-                Console.WriteLine($"value: {item.Value}");
+            if(item.Value == 0) {
+                // Console.WriteLine($"key: {item.Key}");
+                // Console.WriteLine($"value: {item.Value}");
+                continue;
+            }
+            else {
                 yesAnagram = false;
             }
         }
         return yesAnagram;
     }
-    static void alterLetterMap(Dictionary<char, int> dict, char letter, int modifier) {
+    static void AlterLetterMap(Dictionary<char, int> dict, char letter, int modifier) {
+        if (char.IsWhiteSpace(letter)) {
+            }
         if (dict.ContainsKey(letter)) {
             dict[letter] = dict[letter] + modifier;
         }
@@ -276,7 +292,7 @@ public static class SetsAndMapsTester {
     /// 
     /// </summary>
     /// private
-    static void EarthquakeDailySummary() {
+static void EarthquakeDailySummary() {
         const string uri = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
         using var client = new HttpClient();
         using var getRequestMessage = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -292,4 +308,4 @@ public static class SetsAndMapsTester {
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to print out each place a earthquake has happened today and its magitude.
     }
-}
+}}
