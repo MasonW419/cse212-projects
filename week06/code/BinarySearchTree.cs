@@ -75,7 +75,7 @@ public class BinarySearchTree : IEnumerable<int> {
         if (node is not null) {
             TraverseForward(node.Right, values);
             values.Add(node.Data);
-            TraverseForward(node.Left, values); 
+            TraverseForward(node.Left, values);  
         }
     }
 

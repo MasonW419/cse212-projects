@@ -15,7 +15,7 @@ public static class TreesTester {
         tree.Insert(7);
         tree.Insert(4);
         tree.Insert(10);
-        tree.Insert(1);
+        tree.Insert(1);  
         tree.Insert(6);
         Console.WriteLine(tree.ToString()); // 1, 3, 4, 5, 6, 7, 10
 
