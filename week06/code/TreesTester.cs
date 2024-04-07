@@ -12,11 +12,11 @@ public static class TreesTester {
         // After implementing 'no duplicates' rule,
         // this next insert will have no effect on the tree.
         // TODO Problem 1
-        // tree.Insert(7);
-        // tree.Insert(4);
-        // tree.Insert(10);
-        // tree.Insert(1);
-        // tree.Insert(6);
+        tree.Insert(7);
+        tree.Insert(4);
+        tree.Insert(10);
+        tree.Insert(1);
+        tree.Insert(6);
         Console.WriteLine(tree.ToString()); // 1, 3, 4, 5, 6, 7, 10
 
         Console.WriteLine("\n=========== PROBLEM 2 TESTS ===========");

@@ -53,8 +53,8 @@ public class Node {
         int rightHeight = 0;
         if (node.Left is null && node.Right is null) {
             Console.WriteLine("Stopped");
-            return 0;
-        }
+            return 0 + 0;
+        } 
         // else {
         //     if(node.Left is not null) {
         //         leftHeight = 1 + IterateHeight(Left);
