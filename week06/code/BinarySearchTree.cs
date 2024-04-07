@@ -13,8 +13,14 @@ public class BinarySearchTree : IEnumerable<int> {
         if (_root is null)
             _root = newNode;
         // If the list is not empty, then only head will be affected.
-        else
-            _root.Insert(value);
+        else {
+            if (_root.Contains(value)) {
+
+            }
+            else {
+                _root.Insert(value);
+            }
+        }
     }
 
     /// <summary>
@@ -66,6 +72,11 @@ public class BinarySearchTree : IEnumerable<int> {
 
     private void TraverseBackward(Node? node, List<int> values) {
         // TODO Problem 3
+        if (node is not null) {
+            TraverseForward(node.Right, values);
+            values.Add(node.Data);
+            TraverseForward(node.Left, values);
+        }
     }
 
     /// <summary>
