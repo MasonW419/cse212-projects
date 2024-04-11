@@ -46,30 +46,36 @@ public class Node {
 
     public int GetHeight() {
         // TODO Start Problem 4
-        return 1 + Math.Max(IterateHeight(Left), IterateHeight(Right)); // Replace this line with the correct return statement(s)
+        int center = 1;
+        int sides = 0;
+        if(Left is not null || Right is not null) {
+            center++;
+            sides = Math.Max(IterateHeight(Left), IterateHeight(Right));
+        }
+        return center + sides; // Replace this line with the correct return statement(s)
     }
-    private int IterateHeight(Node? node) {
+    private int IterateHeight(Node? node, bool start = false) {
         int leftHeight = 0;
         int rightHeight = 0;
+        int center = 0; 
+        // Console.WriteLine($"This Node: {node.Data}");
+        if(start == true) {
+            center = 1;
+        }
+        if (node.Left is not null) {
+            // Console.WriteLine($"Left Not Null, {node.Left.Data}");
+            leftHeight = 1 + IterateHeight(node.Left);
+        }
+        if (node.Right is not null) {
+            // Console.WriteLine($"Right Not Null {node.Right.Data}");
+            rightHeight = 1 + IterateHeight(node.Right);
+        }
         if (node.Left is null && node.Right is null) {
-            Console.WriteLine("Stopped");
-            return 0;
+            // Console.WriteLine("Both are Null");
         } 
-        // else {
-        //     if(node.Left is not null) {
-        //         leftHeight = 1 + IterateHeight(Left);
-        //     }
-        //     if(node.Right is not null) {
-        //         rightHeight = 1 + IterateHeight(Right);
-        //     }
-        // }
-        // if (node.Left is not null || node.Right is not null) {
-        // if(node.Left is not null)
-        //     leftHeight = 1 + IterateHeight(Left);
-        // if(node.Right is not null) {
-        //     rightHeight = 1 + IterateHeight(Right);
-        // }
-        // }
-        return Math.Max(leftHeight, rightHeight);
+        
+        // Console.WriteLine($"Returned: {Math.Max(leftHeight, rightHeight)}");
+        // Console.WriteLine();
+        return center + Math.Max(leftHeight, rightHeight);
     }
 }

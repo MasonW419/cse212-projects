@@ -12,6 +12,7 @@ public static class TreesTester {
         // After implementing 'no duplicates' rule,
         // this next insert will have no effect on the tree.
         // TODO Problem 1
+
         tree.Insert(7);
         tree.Insert(4);
         tree.Insert(10);
@@ -30,6 +31,10 @@ public static class TreesTester {
         foreach (var value in tree.Reverse()) {
             Console.WriteLine(value); // 10, 7, 6, 5, 4, 3, 1
         }
+        // Console.WriteLine();
+        // foreach (var value in tree.Reverse()) {
+        //     Console.WriteLine(value);
+        // }
 
         Console.WriteLine("\n=========== PROBLEM 4 TESTS ===========");
         Console.WriteLine(tree.GetHeight()); // 3
